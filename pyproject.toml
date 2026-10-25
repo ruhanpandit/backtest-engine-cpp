@@ -1,0 +1,23 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.13"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "backtest-engine-cpp"
+version = "0.1.0"
+description = "C++20 backtest execution engine with pybind11 bindings"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+bench = [
+    "futures-data-store @ git+https://github.com/ruhanpandit/futures-data-store.git@v0.2.0",
+]
+
+[tool.scikit-build]
+cmake.build-type = "Release"
+wheel.packages = ["src/backtest_engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
